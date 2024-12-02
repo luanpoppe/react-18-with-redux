@@ -18,48 +18,30 @@ const books = [
 ];
 
 const BookList = () => {
+  const getBook = (id) => {
+    const book = books.find((b) => b.id == id);
+    console.log("book: ", book);
+    return book;
+  };
+  const someValue = "shakeAndBake";
+  const displayValue = () => {
+    console.log(someValue);
+  };
   return (
     <section className="booklist">
-      <EventExamples />
       {books.map((book) => (
-        <Book key={book.id} {...book} />
+        <Book key={book.id} {...book} getBook={getBook} />
       ))}
     </section>
   );
 };
 
-const EventExamples = () => {
-  const handleFormInput = () => {
-    console.log("handle form input");
-  };
-  const handleButtonClick = () => {
-    console.log("handle button click");
-  };
-  const handleFormSubmission = (e) => {
-    e.preventDefault();
-    console.log("form submitted");
-  };
-  return (
-    <section>
-      <form onSubmit={handleFormSubmission}>
-        <h2>Typical Form</h2>
-        <input
-          onChange={handleFormInput}
-          style={{ margin: "1rem 0" }}
-          type="text"
-          name="example"
-        />
-      </form>
-      <button onClick={handleButtonClick}>Click Here</button>
-    </section>
-  );
-};
-
-const Book = ({ author, img, title }) => {
+const Book = ({ author, img, title, getBook, id }) => {
   return (
     <article className="book">
       <img src={img} alt={title} />
       <h2>{title}</h2>
+      <button onClick={() => getBook(id)}>Click me</button>
       <h4>{author}</h4>
     </article>
   );
