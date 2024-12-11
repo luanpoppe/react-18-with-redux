@@ -1,10 +1,11 @@
-import Start from "./tutorial/02-useEffect/starter/05-cleanup-function";
-// import Start from "./tutorial/03-conditional-rendering/starter/07-user-challenge";
+import Start from "./tutorial/04-project-structure/starter/Navbar";
+import { Navbar } from "./tutorial/04-project-structure/starter/Navbar/Navbar";
 
 function App() {
   return (
     <div className="container">
-      <Start />
+      {/* <Start /> */}
+      <Navbar />
     </div>
   );
 }
