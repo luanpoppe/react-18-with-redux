@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { lazy } from "react";
+import { useState } from "react";
+const SlowComponent = lazy(() => import("./SlowComponent"));
+// import SlowComponent from "./SlowComponent";
 const LatestReact = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [items, setItems] = useState([]);
+  const [show, setShow] = useState(false);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -18,10 +22,10 @@ const LatestReact = () => {
   };
   return (
     <section>
-      <form className='form'>
+      <form className="form">
         <input
-          type='text'
-          className='form-input'
+          type="text"
+          className="form-input"
           value={text}
           onChange={handleChange}
         />
@@ -30,13 +34,18 @@ const LatestReact = () => {
 
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          marginTop: '2rem',
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          marginTop: "2rem",
         }}
       >
         {items}
       </div>
+
+      <button onClick={() => setShow(!show)} className="btn">
+        toggle
+      </button>
+      {show && <SlowComponent />}
     </section>
   );
 };
